@@ -56,8 +56,9 @@ def predict_sentiment(text):
     seq = tokenizer.texts_to_sequences([clean])
     padded = pad_sequences(seq, maxlen=maxlen)
     pred = model.predict(padded)
-    sentiment = "Positive" if pred >= 0.5 else "Negative"
-    return sentiment, float(pred)
+    pred_value = float(pred[0][0])
+    sentiment = "Positive" if pred_value >= 0.5 else "Negative"
+    return sentiment, pred_value
 
 # Summarization
 def summarize_text(text, sentence_count=3):
