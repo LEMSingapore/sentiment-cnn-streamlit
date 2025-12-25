@@ -15,7 +15,7 @@ st.title("Text Summarization & Sentiment Analysis App")
 # Load model and tokenizer
 @st.cache_resource
 def load_sentiment_model():
-    model = load_model("sentiment_cnn.h5")
+    model = load_model("models/sentiment_cnn.h5")
     return model
 
 @st.cache_resource
