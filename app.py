@@ -11,18 +11,16 @@ from sumy.summarizers.lex_rank import LexRankSummarizer
 import nltk
 
 # Download required NLTK data
-@st.cache_resource
-def download_nltk_data():
-    try:
-        nltk.data.find('tokenizers/punkt')
-    except LookupError:
-        nltk.download('punkt', quiet=True)
-    try:
-        nltk.data.find('tokenizers/punkt_tab')
-    except LookupError:
-        nltk.download('punkt_tab', quiet=True)
+import ssl
+try:
+    _create_unverified_https_context = ssl._create_unverified_context
+except AttributeError:
+    pass
+else:
+    ssl._create_default_https_context = _create_unverified_https_context
 
-download_nltk_data()
+nltk.download('punkt', quiet=True)
+nltk.download('punkt_tab', quiet=True)
 
 # Set title
 st.title("Text Summarization & Sentiment Analysis App")
