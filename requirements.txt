@@ -3,4 +3,5 @@ tensorflow
 numpy
 pandas
 sumy
+nltk
 scikit-learn

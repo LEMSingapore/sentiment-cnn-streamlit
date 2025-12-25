@@ -8,6 +8,21 @@ from tensorflow.keras.preprocessing.text import Tokenizer
 from sumy.parsers.plaintext import PlaintextParser
 from sumy.nlp.tokenizers import Tokenizer as SumyTokenizer
 from sumy.summarizers.lex_rank import LexRankSummarizer
+import nltk
+
+# Download required NLTK data
+@st.cache_resource
+def download_nltk_data():
+    try:
+        nltk.data.find('tokenizers/punkt')
+    except LookupError:
+        nltk.download('punkt', quiet=True)
+    try:
+        nltk.data.find('tokenizers/punkt_tab')
+    except LookupError:
+        nltk.download('punkt_tab', quiet=True)
+
+download_nltk_data()
 
 # Set title
 st.title("Text Summarization & Sentiment Analysis App")
