@@ -1,0 +1,12 @@
+{
+  "containerName": "sentiment-cnn-app",
+  "containerPort": 8501,
+  "healthCheck": {
+    "healthyThreshold": 2,
+    "unhealthyThreshold": 2,
+    "timeoutSeconds": 5,
+    "intervalSeconds": 30,
+    "path": "/_stcore/health",
+    "successCodes": "200-499"
+  }
+}
