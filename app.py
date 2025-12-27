@@ -23,95 +23,105 @@ st.set_page_config(
 # Custom CSS to mimic the clean, card-based look of changcheeyoung.github.io
 CUSTOM_CSS = """
 <style>
-/* Overall page */
-body {
-    background-color: #f5f5f5;
+:root {
+  --bg-page: #f3f4f6;
+  --bg-card: #ffffff;
+  --text-main: #111827;
+  --text-muted: #6b7280;
+  --accent: #2563eb;
 }
 
-/* Main app background */
-[data-testid="stAppViewContainer"] {
-    background: #f5f5f5;
+/* Overall page */
+html, body, [data-testid="stAppViewContainer"] {
+  background-color: var(--bg-page) !important;
+  color: var(--text-main) !important;
+}
+
+/* Make all standard text dark for contrast */
+h1, h2, h3, h4, h5, h6,
+p, label, span, div,
+.stMarkdown, .stMarkdown p {
+  color: var(--text-main);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+               Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+/* Main content padding */
+.block-container {
+  padding-top: 2.5rem;
 }
 
 /* Sidebar */
 [data-testid="stSidebar"] {
-    background-color: #1f2933;
-    color: #f9fafb;
+  background-color: #111827;
 }
 
-/* Sidebar text */
 [data-testid="stSidebar"] * {
-    color: #f9fafb !important;
+  color: #e5e7eb !important;
 }
 
-/* Title */
-h1, h2, h3 {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-                 Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-}
-
-/* Accent color similar to Minimal Mistakes links */
+/* Links / accents */
 a, .stMarkdown a {
-    color: #1d72b8;
+  color: var(--accent);
 }
 
 /* Cards */
 .app-card {
-    background-color: #ffffff;
-    padding: 1.5rem 1.75rem;
-    border-radius: 0.75rem;
-    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
-    border: 1px solid #e5e7eb;
+  background-color: var(--bg-card);
+  padding: 1.5rem 1.75rem;
+  border-radius: 1rem;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.12);
+  border: 1px solid #e5e7eb;
 }
 
 /* Section titles inside cards */
 .app-section-title {
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
 }
 
 /* Muted text */
 .app-muted {
-    color: #6b7280;
-    font-size: 0.9rem;
+  color: var(--text-muted) !important;
+  font-size: 0.9rem;
 }
 
 /* Result labels */
 .app-badge {
-    display: inline-block;
-    padding: 0.35rem 0.7rem;
-    border-radius: 999px;
-    background-color: #e5f3ff;
-    color: #1d72b8;
-    font-size: 0.8rem;
-    font-weight: 600;
+  display: inline-block;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  background-color: #e5f3ff;
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 600;
 }
 
 /* Sentiment pills */
 .sentiment-positive {
-    background-color: #dcfce7;
-    color: #15803d;
-    padding: 0.4rem 0.8rem;
-    border-radius: 999px;
-    font-weight: 600;
-    display: inline-block;
+  background-color: #dcfce7;
+  color: #166534;
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
+  font-weight: 600;
+  display: inline-block;
 }
 
 .sentiment-negative {
-    background-color: #fee2e2;
-    color: #b91c1c;
-    padding: 0.4rem 0.8rem;
-    border-radius: 999px;
-    font-weight: 600;
-    display: inline-block;
+  background-color: #fee2e2;
+  color: #b91c1c;
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
+  font-weight: 600;
+  display: inline-block;
 }
 
 /* Small score text */
 .sentiment-score {
-    font-size: 0.85rem;
-    color: #6b7280;
-    margin-left: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-left: 0.5rem;
 }
 </style>
 """
