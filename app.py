@@ -226,54 +226,61 @@ with st.sidebar:
         "3. Inspect the **sentiment score**."
     )
 
-# Two-column main layout: left input, right results
-col_input, col_output = st.columns([1.1, 1.1])
+# -----------------------------
+# Single Column Layout
+# -----------------------------
+st.markdown("<div class='app-card'>", unsafe_allow_html=True)
+st.markdown("<div class='app-section-title'>📝 Input Text</div>", unsafe_allow_html=True)
+st.markdown(
+    "<p class='app-muted'>Enter a review, comment or paragraph to summarize and analyse.</p>",
+    unsafe_allow_html=True,
+)
 
-with col_input:
-    st.markdown("<div class='app-card'>", unsafe_allow_html=True)
-    st.markdown("<div class='app-section-title'>📝 Input Text</div>", unsafe_allow_html=True)
+input_text = st.text_area(
+    label="",
+    height=260,
+    placeholder="Paste or type your review text here...",
+)
+
+st.markdown(
+    "<p class='app-muted' style='margin-top:0.25rem;'>"
+    "Press <strong>⌘ + Enter</strong> to run the analysis."
+    "</p>",
+    unsafe_allow_html=True,
+)
+
+st.markdown("</div>", unsafe_allow_html=True)
+
+
+# RESULTS CARD
+st.markdown("<div class='app-card'>", unsafe_allow_html=True)
+st.markdown("<div class='app-section-title'>📊 Results</div>", unsafe_allow_html=True)
+
+if input_text:
+    st.markdown("<span class='app-badge'>Summary</span>", unsafe_allow_html=True)
+    summary = summarize_text(input_text)
+    st.write(summary)
+
+    st.markdown("---")
+
+    sentiment, score = predict_sentiment(input_text)
+
+    pill_class = "sentiment-positive" if sentiment == 'Positive' else "sentiment-negative"
+
+    sentiment_html = (
+        f"<span class='{pill_class}'>{sentiment}</span>"
+        f"<span class='sentiment-score'>Model score: {score:.2f}</span>"
+    )
+
+    st.markdown("<span class='app-badge'>Sentiment</span>", unsafe_allow_html=True)
+    st.markdown(sentiment_html, unsafe_allow_html=True)
+
+else:
     st.markdown(
-        "<p class='app-muted'>Enter a review, comment or paragraph to summarize and analyse.</p>",
+        "<p class='app-muted'>Results will appear here once you enter text above.</p>",
         unsafe_allow_html=True,
     )
-    input_text = st.text_area(
-        label="",
-        height=280,
-        placeholder="Paste or type your review text here...",
-    )
-    st.markdown("</div>", unsafe_allow_html=True)
 
-with col_output:
-    st.markdown("<div class='app-card'>", unsafe_allow_html=True)
-    st.markdown("<div class='app-section-title'>📊 Results</div>", unsafe_allow_html=True)
+st.markdown("</div>", unsafe_allow_html=True)
 
-    if input_text:
-        # Summary
-        st.markdown("<span class='app-badge'>Summary</span>", unsafe_allow_html=True)
-        summary = summarize_text(input_text)
-        st.write(summary)
-
-        st.markdown("---")
-
-        # Sentiment
-        sentiment, score = predict_sentiment(input_text)
-        if sentiment == "Positive":
-            pill_class = "sentiment-positive"
-        else:
-            pill_class = "sentiment-negative"
-
-        sentiment_html = (
-            f"<span class='{pill_class}'>{sentiment}</span>"
-            f"<span class='sentiment-score'>Model score: {score:.2f}</span>"
-        )
-        st.markdown("<span class='app-badge'>Sentiment</span>", unsafe_allow_html=True)
-        st.markdown(sentiment_html, unsafe_allow_html=True)
-
-    else:
-        st.markdown(
-            "<p class='app-muted'>Results will appear here once you enter some text on the left.</p>",
-            unsafe_allow_html=True,
-        )
-
-    st.markdown("</div>", unsafe_allow_html=True)
 
