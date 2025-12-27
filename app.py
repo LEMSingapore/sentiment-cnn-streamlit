@@ -24,8 +24,8 @@ st.set_page_config(
 CUSTOM_CSS = """
 <style>
 :root {
-  --bg-page: #f3f4f6;
-  --bg-card: #ffffff;
+  --bg-page: #ffffff;      /* page now pure white */
+  --bg-card: #f9fafb;      /* cards slightly grey so they look like panels */
   --text-main: #111827;
   --text-muted: #6b7280;
   --accent: #2563eb;
@@ -65,12 +65,12 @@ a, .stMarkdown a {
   color: var(--accent);
 }
 
-/* Cards */
+/* Cards – now clearly panels, not inputs */
 .app-card {
   background-color: var(--bg-card);
-  padding: 1.5rem 1.75rem;
+  padding: 1.25rem 1.5rem 1.5rem;
   border-radius: 1rem;
-  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.12);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
   border: 1px solid #e5e7eb;
 }
 
